@@ -12,13 +12,17 @@ console.log('app.js is running');
 var app = {
   title: 'The Indecision App',
   subTitle: 'Where indecision goes to die',
-  options: ['One', 'Two']
+  options: []
 };
 
 var onFormSubmit = function onFormSubmit(e) {
   e.preventDefault();
 
-  console.log('form submitted');
+  var option = e.target.elements.option.value;
+  if (option) {
+    app.options.push(option);
+    e.target.elements.option.value = '';
+  }
 };
 // // JSX - JavaScript XML
 var template = React.createElement(
@@ -38,6 +42,11 @@ var template = React.createElement(
     'p',
     null,
     app.options.length > 0 ? "Here are your options" : "No options"
+  ),
+  React.createElement(
+    'p',
+    null,
+    app.options.length
   ),
   React.createElement(
     'ol',

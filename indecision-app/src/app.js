@@ -10,13 +10,17 @@ console.log('app.js is running');
 const app = {
     title: 'The Indecision App',
     subTitle: 'Where indecision goes to die',
-    options: ['One', 'Two']
+    options: []
 };
 
 const onFormSubmit = (e) => {
   e.preventDefault();
   
-  console.log('form submitted')
+  const option = e.target.elements.option.value;
+  if(option) {
+    app.options.push(option);
+    e.target.elements.option.value = '';
+  }
 
 };
 // // JSX - JavaScript XML
@@ -25,6 +29,7 @@ const template = (
     <h1>{app.title}</h1>
     {app.subTitle && <p>{app.subTitle}</p>}
     <p>{app.options.length > 0 ? "Here are your options" : "No options"}</p>
+    <p>{app.options.length}</p>
     <ol>
       <li>Item one</li>
       <li>Item two</li>
